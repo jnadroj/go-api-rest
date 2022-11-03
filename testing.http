@@ -1,0 +1,28 @@
+GET http://localhost:1323/users HTTP/1.1
+
+### 
+
+POST http://localhost:1323/user HTTP/1.1
+content-type: application/json
+
+{
+    "name": "Jonathan",
+    "location": "Guayaquil", 
+    "title": "Sr Backend Developer"
+}
+
+### 
+
+PATCH http://localhost:1323/user/<id> HTTP/1.1
+content-type: application/json
+
+{
+    "name": "Jordan",
+    "location": "Toronto", 
+    "title": "Sr Frontend Developer"
+}
+
+
+### 
+
+DELETE http://localhost:1323/user/6363373323bfef286254aa32 HTTP/1.1
