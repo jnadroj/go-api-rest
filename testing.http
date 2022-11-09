@@ -1,8 +1,8 @@
-GET http://localhost:1323/users HTTP/1.1
+GET http://localhost:8080/users HTTP/1.1
 
 ### 
 
-POST http://localhost:1323/user HTTP/1.1
+POST http://localhost:8080/user HTTP/1.1
 content-type: application/json
 
 {
@@ -13,7 +13,7 @@ content-type: application/json
 
 ### 
 
-PATCH http://localhost:1323/user/<id> HTTP/1.1
+PATCH http://localhost:8080/user/<id> HTTP/1.1
 content-type: application/json
 
 {
@@ -25,4 +25,4 @@ content-type: application/json
 
 ### 
 
-DELETE http://localhost:1323/user/6363373323bfef286254aa32 HTTP/1.1
+DELETE http://localhost:8080/user/6363373323bfef286254aa32 HTTP/1.1

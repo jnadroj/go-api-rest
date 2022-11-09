@@ -1,9 +1,10 @@
-package main 
+package main
 
 import (
-	"net/http"
 	"apirest/configs"
 	"apirest/routes"
+	"net/http"
+
 	"github.com/labstack/echo/v4"
 )
 
@@ -20,5 +21,5 @@ func main() {
 	e.GET("/", indexResponse)
 	routes.UserRoute(e)
 
-	e.Logger.Fatal(e.Start(":1323"))
+	e.Logger.Fatal(e.Start(":8080"))
 }

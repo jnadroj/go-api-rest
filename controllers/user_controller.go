@@ -68,10 +68,17 @@ func GetAUser(c echo.Context) error {
 
 func GetAllUsers(c echo.Context) error {
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	name := c.QueryParam("name")
 	var users []models.User
 	defer cancel()
+	
+	filter := bson.M{}
 
-	results, err := userCollection.Find(ctx, bson.M{})
+	if name != "" {
+		filter = bson.M{"name": primitive.Regex{Pattern: name, Options: "i"}}
+	}
+
+	results, err := userCollection.Find(ctx, filter)
 
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, responses.UserResponse{Status: http.StatusInternalServerError, Message: "error", Data: &echo.Map{"data": err.Error()}})
