@@ -9,6 +9,7 @@ import (
 
 	"go.mongodb.org/mongo-driver/bson"
 
+	"github.com/go-faker/faker/v4"
 	"github.com/go-playground/validator/v10"
 	"github.com/labstack/echo/v4"
 	"go.mongodb.org/mongo-driver/bson/primitive"
@@ -155,4 +156,21 @@ func DeleteAUser(c echo.Context) error {
 	}
 
 	return c.JSON(http.StatusOK, responses.UserResponse{Status: http.StatusOK, Message: "success", Data: &echo.Map{"data": "user deleted successfully"}})
+}
+
+func MakeSeedUsers(c echo.Context) error { 
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	
+	defer cancel()
+
+	for i := 0; i < 100; i++ { 
+		newUser := models.User{
+			Name:   	faker.FirstName(), 
+			Location: faker.Word(), 
+			Title:    faker.TitleMale(),
+		}
+		userCollection.InsertOne(ctx, newUser)
+	}
+
+	return c.JSON(http.StatusOK, responses.UserResponse{Status: http.StatusOK, Message: "success", Data: &echo.Map{"data": "users created successfully"}})
 }

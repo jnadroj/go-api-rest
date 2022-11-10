@@ -8,6 +8,7 @@ import (
 
 func UserRoute(e *echo.Echo) {
 	e.GET("/users", controllers.GetAllUsers) 
+	e.GET("/users/seed", controllers.MakeSeedUsers)
 	e.GET("/user/:userId", controllers.GetAUser) 
 	e.POST("/user", controllers.CreateUser)
 	e.PATCH("/user/:userId", controllers.EditAUser)
